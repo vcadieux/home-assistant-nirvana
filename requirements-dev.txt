@@ -1,0 +1,6 @@
+homeassistant==2026.10.4
+pycognito==2024.5.1
+pytest==9.2.0
+pytest-asyncio==1.4.1
+aioresponses==0.7.9
+ruff==0.17.3

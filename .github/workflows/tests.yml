@@ -1,0 +1,30 @@
+name: Tests
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - python: '3.12'
+            homeassistant: '2024.12.5'
+          - python: '3.14'
+            homeassistant: '2026.10.4'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install test dependencies
+        run: >-
+          python -m pip install
+          homeassistant==${{ matrix.homeassistant }} pycognito==2024.5.1
+          pytest==9.2.0 pytest-asyncio==1.4.1 aioresponses==0.7.9 ruff==0.17.3
+      - run: python -m pytest -q
+      - run: ruff check custom_components tests scripts
+      - run: ruff format --check custom_components tests scripts
+      - run: python scripts/build_release.py

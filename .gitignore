@@ -1,0 +1,21 @@
+.venv*/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.DS_Store
+# Local reverse-engineering inputs and evidence are never published.
+*.apk
+*.xapk
+analysis/
+dist/
+# Local credentials / Home Assistant data
+.env
+.env.*
+!.env.example
+.storage/
+secrets.yaml
+configuration.yaml
+publication/

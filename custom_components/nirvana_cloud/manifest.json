@@ -1,0 +1,16 @@
+{
+  "domain": "nirvana_cloud",
+  "name": "Nirvana Heat Pump (Cloud)",
+  "version": "0.1.1",
+  "config_flow": true,
+  "documentation": "https://github.com/vcadieux/home-assistant-nirvana",
+  "integration_type": "hub",
+  "iot_class": "cloud_polling",
+  "requirements": [
+    "pycognito==2024.5.1"
+  ],
+  "codeowners": [
+    "@vcadieux"
+  ],
+  "issue_tracker": "https://github.com/vcadieux/home-assistant-nirvana/issues"
+}

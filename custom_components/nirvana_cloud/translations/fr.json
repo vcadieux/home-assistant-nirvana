@@ -1,0 +1,107 @@
+{
+  "title": "Nirvana Heat Pump (Cloud)",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connexion à Nirvana",
+        "description": "Utilisez votre compte de l’app Nirvana. Le mot de passe sert uniquement à la connexion; un jeton de renouvellement est conservé dans Home Assistant.",
+        "data": {
+          "username": "Courriel / identifiant",
+          "password": "Mot de passe"
+        }
+      },
+      "mfa": {
+        "title": "Code de vérification",
+        "description": "Saisissez le code de votre application d’authentification, courriel ou SMS.",
+        "data": {
+          "code": "Code"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Identifiants, session ou code de vérification invalides.",
+      "cannot_connect": "Impossible de joindre Nirvana. Réessayez plus tard.",
+      "unsupported_challenge": "Terminez l’activation du compte, le changement de mot de passe ou la configuration MFA dans l’app Nirvana, puis réessayez.",
+      "unexpected_response": "La réponse du cloud diffère du format Nirvana pris en charge.",
+      "cognito_error": "Nirvana a refusé une étape de connexion : {auth_error}. Ce code n’indique pas nécessairement un mot de passe incorrect."
+    },
+    "abort": {
+      "already_configured": "Ce compte Nirvana est déjà configuré.",
+      "reauth_successful": "Connexion mise à jour.",
+      "wrong_account": "Connectez-vous avec le compte Nirvana d’origine.",
+      "unsupported_challenge": "Terminez l’activation du compte, le changement de mot de passe ou la configuration MFA dans l’app Nirvana, puis réessayez."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Actualisation du cloud",
+        "description": "Intervalle en secondes (15 à 300). Valeur par défaut : 30.",
+        "data": {
+          "scan_interval": "Intervalle d’actualisation (secondes)"
+        }
+      }
+    }
+  },
+  "entity": {
+    "climate": {
+      "thermostat": {
+        "state_attributes": {
+          "preset_mode": {
+            "state": {
+              "pool": "Piscine",
+              "spa": "Spa"
+            }
+          }
+        }
+      }
+    },
+    "select": {
+      "performance": {
+        "name": "Performance",
+        "state": {
+          "quiet": "Silencieux",
+          "eco": "Éco",
+          "smart": "Smart",
+          "boost": "Boost"
+        }
+      }
+    },
+    "sensor": {
+      "water_temperature": {
+        "name": "Température de l’eau"
+      },
+      "outside_temperature": {
+        "name": "Température extérieure"
+      },
+      "wifi_signal": {
+        "name": "Signal Wi-Fi"
+      },
+      "last_update": {
+        "name": "Dernière mise à jour de l’appareil"
+      },
+      "status": {
+        "name": "État de la thermopompe",
+        "state": {
+          "off": "Arrêt",
+          "heating": "Chauffage",
+          "cooling": "Refroidissement",
+          "idle": "Au repos",
+          "defrost": "Dégivrage",
+          "compressor_delay": "Délai compresseur",
+          "fault": "Défaut",
+          "technician_control": "Contrôle technicien",
+          "unknown": "Inconnu"
+        }
+      }
+    },
+    "binary_sensor": {
+      "connectivity": {
+        "name": "Connectée"
+      },
+      "problem": {
+        "name": "Défaut"
+      }
+    }
+  }
+}

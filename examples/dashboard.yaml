@@ -1,0 +1,60 @@
+# Exemple de carte manuelle Lovelace. Remplacez chaque entity_id par celui créé
+# sur votre installation (Paramètres > Appareils et services > Nirvana).
+# Aucune carte HACS supplémentaire n'est nécessaire.
+type: vertical-stack
+cards:
+  - type: thermostat
+    entity: climate.piscine
+    name: Thermopompe Nirvana
+    features:
+      - type: climate-hvac-modes
+        hvac_modes:
+          - heat
+          - "off"
+  - type: entities
+    title: Piscine
+    entities:
+      - entity: climate.piscine
+        name: Mode piscine / spa et consigne
+      - entity: sensor.piscine_water_temperature
+        name: Température de l’eau
+      - entity: sensor.piscine_status
+        name: État
+      - entity: select.piscine_performance
+        name: Performance
+      - entity: binary_sensor.piscine_connectivity
+        name: Connexion
+      - entity: binary_sensor.piscine_problem
+        name: Défaut
+  - type: horizontal-stack
+    cards:
+      - type: button
+        name: Piscine
+        icon: mdi:pool
+        tap_action:
+          action: perform-action
+          perform_action: climate.set_preset_mode
+          target:
+            entity_id: climate.piscine
+          data:
+            preset_mode: pool
+      - type: button
+        name: Spa
+        icon: mdi:hot-tub
+        tap_action:
+          action: perform-action
+          perform_action: climate.set_preset_mode
+          target:
+            entity_id: climate.piscine
+          data:
+            preset_mode: spa
+      - type: button
+        name: Arrêt
+        icon: mdi:power
+        tap_action:
+          action: perform-action
+          perform_action: climate.set_hvac_mode
+          target:
+            entity_id: climate.piscine
+          data:
+            hvac_mode: "off"

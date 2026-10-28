@@ -1,0 +1,107 @@
+{
+  "title": "Nirvana Heat Pump (Cloud)",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to Nirvana",
+        "description": "Use your existing Nirvana app account. Your password is used for sign-in only; a refresh token is stored in Home Assistant.",
+        "data": {
+          "username": "Email / username",
+          "password": "Password"
+        }
+      },
+      "mfa": {
+        "title": "Verification code",
+        "description": "Enter the code from your authenticator app, email or SMS.",
+        "data": {
+          "code": "Code"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Invalid credentials, session or verification code.",
+      "cannot_connect": "Unable to reach Nirvana. Try again later.",
+      "unsupported_challenge": "Complete account activation, password reset or MFA setup in the official Nirvana app, then try again.",
+      "unexpected_response": "The cloud response differs from the supported Nirvana API.",
+      "cognito_error": "Nirvana rejected a sign-in step: {auth_error}. This does not necessarily mean the password is incorrect."
+    },
+    "abort": {
+      "already_configured": "This Nirvana account is already configured.",
+      "reauth_successful": "Sign-in updated successfully.",
+      "wrong_account": "Sign in with the original Nirvana account.",
+      "unsupported_challenge": "Complete account activation, password reset or MFA setup in the official Nirvana app, then try again."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Cloud polling",
+        "description": "Polling interval in seconds (15–300). Default: 30.",
+        "data": {
+          "scan_interval": "Polling interval (seconds)"
+        }
+      }
+    }
+  },
+  "entity": {
+    "climate": {
+      "thermostat": {
+        "state_attributes": {
+          "preset_mode": {
+            "state": {
+              "pool": "Pool",
+              "spa": "Spa"
+            }
+          }
+        }
+      }
+    },
+    "select": {
+      "performance": {
+        "name": "Performance",
+        "state": {
+          "quiet": "Quiet",
+          "eco": "Eco",
+          "smart": "Smart",
+          "boost": "Boost"
+        }
+      }
+    },
+    "sensor": {
+      "water_temperature": {
+        "name": "Water temperature"
+      },
+      "outside_temperature": {
+        "name": "Outside temperature"
+      },
+      "wifi_signal": {
+        "name": "Wi-Fi signal"
+      },
+      "last_update": {
+        "name": "Last device update"
+      },
+      "status": {
+        "name": "Heat pump status",
+        "state": {
+          "off": "Off",
+          "heating": "Heating",
+          "cooling": "Cooling",
+          "idle": "Idle",
+          "defrost": "Defrosting",
+          "compressor_delay": "Compressor delay",
+          "fault": "Fault",
+          "technician_control": "Technician control",
+          "unknown": "Unknown"
+        }
+      }
+    },
+    "binary_sensor": {
+      "connectivity": {
+        "name": "Connected"
+      },
+      "problem": {
+        "name": "Fault"
+      }
+    }
+  }
+}
